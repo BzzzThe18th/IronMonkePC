@@ -7,8 +7,6 @@ using Utilla;
 
 namespace IronMonke
 {
-    [ModdedGamemode]
-    [BepInDependency("org.legoandmars.gorillatag.utilla", "1.5.0")]
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
     public class IronMonkePlugin : BaseUnityPlugin
     {
@@ -22,7 +20,7 @@ namespace IronMonke
         Transform lHandT;
 
         private float thrust;
-        private float maxSpeed = 50f;
+        private float maxSpeed = 100f;
 
         GameObject quitBox;
         Transform quitBoxT;
@@ -106,7 +104,7 @@ namespace IronMonke
         [ModdedGamemodeLeave]
         public void OnLeave(string gamemode)
         {
-            inRoom = false;
+            inRoom = true;
 
             RB.useGravity = true;
         }
