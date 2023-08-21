@@ -22,7 +22,6 @@ namespace IronMonke
     public class Main : BaseUnityPlugin
     {
         bool modded;
-        bool isEnabled;
         GameObject gL;
         AudioSource aL;
         ParticleSystem psL;
@@ -50,13 +49,11 @@ namespace IronMonke
         void OnEnable()
         {
             HarmonyPatches.ApplyHarmonyPatches();
-            isEnabled = true;
         }
 
         void OnDisable()
         {
             HarmonyPatches.RemoveHarmonyPatches();
-            isEnabled = false;
         }
 
         void OnGameInitialized(object sender, EventArgs e)
@@ -87,7 +84,7 @@ namespace IronMonke
                 {
                     if (EasyInput.FaceButtonY)
                     {
-                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(10 * gL.transform.parent.right, ForceMode.Acceleration);
+                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(11 * -gL.transform.parent.right, ForceMode.Acceleration);
                         if (!psL.isPlaying) psL.Play();
                         if (!aL.isPlaying) aL.Play();
                         GorillaTagger.Instance.StartVibration(true, GorillaTagger.Instance.tapHapticStrength / 50f * GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity.magnitude, GorillaTagger.Instance.tapHapticDuration);
@@ -101,7 +98,7 @@ namespace IronMonke
 
                     if (EasyInput.FaceButtonB)
                     {
-                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(10 * -gR.transform.parent.right, ForceMode.Acceleration);
+                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(11 * gR.transform.parent.right, ForceMode.Acceleration);
                         if (!psR.isPlaying) psR.Play();
                         if (!aR.isPlaying) aR.Play();
                         GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tapHapticStrength / 50f * GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity.magnitude, GorillaTagger.Instance.tapHapticDuration);
@@ -124,22 +121,12 @@ namespace IronMonke
         public void OnJoin(string gamemode)
         {
             modded = true;
-            if (isEnabled)
-            {
-                gL.SetActive(true);
-                gR.SetActive(true);
-            }
         }
 
         [ModdedGamemodeLeave]
         public void OnLeave(string gamemode)
         {
             modded = false;
-            if (isEnabled)
-            {
-                gL.SetActive(false);
-                gR.SetActive(false);
-            }
         }
     }
 
