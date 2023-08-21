@@ -394,5 +394,6 @@ Directory.Build.props
 Directory.Build.targets
 MakeRelease.ps1
 .gitattributes
+.gitignore
 *.csproj
 *.sln
