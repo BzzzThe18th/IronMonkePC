@@ -87,7 +87,7 @@ namespace IronMonke
                 {
                     if (EasyInput.FaceButtonY)
                     {
-                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(11 * gL.transform.parent.right, ForceMode.Acceleration);
+                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(10 * gL.transform.parent.right, ForceMode.Acceleration);
                         if (!psL.isPlaying) psL.Play();
                         if (!aL.isPlaying) aL.Play();
                         GorillaTagger.Instance.StartVibration(true, GorillaTagger.Instance.tapHapticStrength / 50f * GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity.magnitude, GorillaTagger.Instance.tapHapticDuration);
@@ -101,7 +101,7 @@ namespace IronMonke
 
                     if (EasyInput.FaceButtonB)
                     {
-                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(11 * -gR.transform.parent.right, ForceMode.Acceleration);
+                        GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(10 * -gR.transform.parent.right, ForceMode.Acceleration);
                         if (!psR.isPlaying) psR.Play();
                         if (!aR.isPlaying) aR.Play();
                         GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tapHapticStrength / 50f * GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity.magnitude, GorillaTagger.Instance.tapHapticDuration);
