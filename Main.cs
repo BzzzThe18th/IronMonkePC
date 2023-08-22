@@ -67,11 +67,13 @@ namespace IronMonke
                 aL = gL.GetComponent<AudioSource>();
                 gL.transform.SetParent(GorillaTagger.Instance.offlineVRRig.transform.Find("rig/body/shoulder.L/upper_arm.L/forearm.L/hand.L"), false);
                 psL = gL.transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
+                gL.SetActive(false);
 
                 gR = EasyAssetLoading.InstantiateAsset(Assembly.GetExecutingAssembly(), "IronMonke.gloven", "gloveR");
                 aR = gR.GetComponent<AudioSource>();
                 gR.transform.SetParent(GorillaTagger.Instance.offlineVRRig.transform.Find("rig/body/shoulder.R/upper_arm.R/forearm.R/hand.R"), false);
                 psR = gR.transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
+                gR.SetActive(false);
             }
             catch (Exception ex)
             {
@@ -85,6 +87,8 @@ namespace IronMonke
             {
                 try
                 {
+                    EasyInput.UpdateInput();
+
                     if (EasyInput.FaceButtonY)
                     {
                         GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(10 * gL.transform.parent.right, ForceMode.Acceleration);
