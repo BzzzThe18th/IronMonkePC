@@ -17,7 +17,7 @@ namespace IronMonke
 
     [ModdedGamemode]
     [BepInDependency("org.legoandmars.gorillatag.utilla", "1.6.7")]
-    [BepInDependency("com.buzzbzzzbzzbzzzthe18th.gorillatag.HoneyLib", "1.0.6")]
+    [BepInDependency("com.buzzbzzzbzzbzzzthe18th.gorillatag.HoneyLib", "1.0.7")]
     [BepInPlugin(ModInfo._id, ModInfo._name, "1.0.2")]
     public class Main : BaseUnityPlugin
     {
