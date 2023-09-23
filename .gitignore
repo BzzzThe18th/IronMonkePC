@@ -397,4 +397,4 @@ MakeRelease.ps1
 .gitignore
 *.csproj
 *.sln
-/IronMonke-v1.0.2.zip
+/*.zip
