@@ -17,8 +17,8 @@ namespace IronMonke
 
     [ModdedGamemode]
     [BepInDependency("org.legoandmars.gorillatag.utilla", "1.6.7")]
-    [BepInDependency("com.buzzbzzzbzzbzzzthe18th.gorillatag.HoneyLib", "1.0.7")]
-    [BepInPlugin(ModInfo._id, ModInfo._name, "1.0.2")]
+    [BepInDependency("com.buzzbzzzbzzbzzzthe18th.gorillatag.HoneyLib", "1.0.9")]
+    [BepInPlugin(ModInfo._id, ModInfo._name, "1.0.3")]
     public class Main : BaseUnityPlugin
     {
         bool modded;
@@ -50,12 +50,14 @@ namespace IronMonke
         void OnEnable()
         {
             HarmonyPatches.ApplyHarmonyPatches();
+            if (modded) gL?.SetActive(true);
             isEnabled = true;
         }
 
         void OnDisable()
         {
             HarmonyPatches.RemoveHarmonyPatches();
+            gL?.SetActive(false);
             isEnabled = false;
         }
 
@@ -87,8 +89,6 @@ namespace IronMonke
             {
                 try
                 {
-                    EasyInput.UpdateInput();
-
                     if (EasyInput.FaceButtonY)
                     {
                         GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(10 * gL.transform.parent.right, ForceMode.Acceleration);
@@ -130,8 +130,8 @@ namespace IronMonke
             modded = true;
             if (isEnabled)
             {
-                gL.SetActive(true);
-                gR.SetActive(true);
+                gL?.SetActive(true);
+                gR?.SetActive(true);
             }
         }
 
@@ -139,11 +139,8 @@ namespace IronMonke
         public void OnLeave(string gamemode)
         {
             modded = false;
-            if (isEnabled)
-            {
-                gL.SetActive(false);
-                gR.SetActive(false);
-            }
+            gL?.SetActive(false);
+            gR?.SetActive(false);
         }
     }
 
